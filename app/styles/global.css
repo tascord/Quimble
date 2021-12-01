@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,800;0,900;1,900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Header font */
+:root {
+  --header-font: "Overpass", sans-serif;
+}
+
+@layer components {
+  body {
+    min-height: 100vh;
+    max-width: 100vw;
+    @apply relative;
+    @apply bg-gray-900;
+    @apply overflow-x-hidden;
+  }
+  h1,
+  h2 {
+    font-family: var(--header-font);
+    font-weight: 900;
+    @apply w-full;
+  }
+  h1 a,
+  h2 a {
+    @apply text-green-400 text-opacity-100;
+  }
+  a {
+    @apply text-gray-400 hover:text-gray-50;
+    @apply transition-colors ease-in-out duration-200;
+  }
+  body > header {
+    @apply w-full h-24 px-12;
+    @apply flex justify-between items-center;
+    @apply bg-gray-900 text-white;
+  }
+  body > header h1 {
+    @apply text-2xl tracking-widest;
+  }
+  body > header nav {
+    @apply w-full;
+    @apply flex justify-end;
+    @apply font-bold;
+  }
+  body > header nav a {
+    @apply text-gray-400 hover:text-gray-50;
+  }
+  body > header nav :not(:last-child) {
+    @apply mr-4;
+  }
+  body > main {
+    @apply p-3 px-12 pb-[14.5rem];
+    @apply text-white;
+  }
+  body > footer {
+    @apply absolute bottom-0;
+    @apply w-full h-[13.5rem];
+    @apply flex flex-col items-center justify-center;
+    @apply bg-gray-800;
+  }
+  body > footer section.content {
+    @apply flex flex-row flex-wrap justify-between;
+    @apply w-full;
+    @apply p-4 pt-8;
+    @apply text-white;
+  }
+  body > footer section.content h1 {
+    @apply text-[2.33rem];
+    @apply mb-2;
+  }
+  body > footer section.content .blabber {
+    @apply w-[25%] min-w-[24rem] mr-[15rem] ml-8;
+    @apply text-lg;
+  }
+  body > footer section.content ul {
+    @apply w-[15%];
+  }
+  body > footer section.content ul a {
+    @apply text-gray-400 hover:text-gray-50;
+  }
+  body > footer hr {
+    width: calc(100% - 2.5rem);
+  }
+  body > footer section.closing {
+    @apply px-12 mt-4 mb-4;
+    @apply w-full;
+    @apply flex flex-row justify-between items-center;
+    @apply text-green-400;
+  }
+  main > section.error {
+    @apply absolute left-0;
+    @apply w-full h-[60%];
+    @apply mb-16 p-8;
+    @apply flex flex-col;
+    @apply bg-no-repeat bg-center bg-contain;
+  }
+  main > section.error h1 {
+    @apply text-4xl;
+  }
+  main > section.error p {
+    @apply text-xl;
+  }
+  div.popup {
+    @apply fixed top-0 left-0 z-50;
+    @apply w-full h-full;
+    @apply flex flex-col justify-center items-center;
+    @apply bg-white bg-opacity-30;
+    @apply cursor-pointer;
+  }
+  div.popup > .content {
+    @apply cursor-default;
+  }
+}
+/*# sourceMappingURL=global.css.map */

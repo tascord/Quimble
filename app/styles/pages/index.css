@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  .questions {
+    @apply flex flex-col justify-center items-center;
+    @apply w-full;
+  }
+  .questions .question {
+    @apply flex flex-row justify-around flex-wrap items-center;
+    @apply w-[90%] min-w-[35rem];
+    @apply mb-24;
+  }
+  .questions .question:last-child {
+    @apply mb-8;
+  }
+  .questions .question img {
+    @apply h-[20rem];
+    @apply mr-4;
+    @apply rounded-2xl;
+  }
+  .questions .question .text {
+    @apply max-w-[50%];
+  }
+  .questions .question .text h1 {
+    @apply text-3xl;
+  }
+  .questions .question .text p {
+    @apply mb-4;
+    @apply text-xl;
+  }
+}
+/*# sourceMappingURL=index.css.map */

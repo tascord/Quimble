@@ -1,0 +1,135 @@
+import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from "remix";
+import type { LinksFunction } from "remix";
+
+import TypogLight from './media/typography_light.svg';
+import LogoLight from './media/logo_light.svg';
+
+export let links: LinksFunction = () => {
+  return [
+    { rel: "stylesheet", href: '/tailwind' }
+  ];
+};
+
+export default function App() {
+  return (
+    <Document>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Document>
+  );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+  return (
+    <Document title="Quimble — Uh Oh!">
+      <Layout>
+        <section className="error">
+          <h1>There was an error</h1>
+          <p className="text-gray-500">{error.message}</p>
+          <hr className="my-4" />
+          <p className="text-green-400 text-2xl">
+            Something we weren't expecting happened.
+            Maybe try that again?
+          </p>
+        </section>
+      </Layout>
+    </Document>
+  );
+}
+
+export function CatchBoundary() {
+  let caught = useCatch();
+
+  return (
+    <Document title={`${caught.status} — ${caught.statusText}`}>
+      <Layout>
+        <section className="error" style={{
+          backgroundImage: `url('https://http.cat/${caught.status}')`
+        }}>
+        </section>
+      </Layout>
+    </Document>
+  );
+}
+
+function Document({
+  children,
+  title
+}: {
+  children: React.ReactNode;
+  title?: string;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        {title ? <title>{title}</title> : null}
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+        {process.env.NODE_ENV === "development" && <LiveReload />}
+      </body>
+    </html>
+  );
+}
+
+function Layout({ children }: { children: React.ReactNode }) {
+
+  return (
+
+    <>
+
+      <header>
+        <h1>
+          <Link to="/">
+            <img src={TypogLight} alt="Quimble Logo" className="h-10" />
+          </Link>
+        </h1>
+        <nav>
+          <Link to="/about">About</Link>
+          <Link to="/support">Support</Link>
+        </nav>
+      </header>
+
+      <main>
+        {children}
+      </main>
+
+      <footer>
+        <section className="content">
+          <div className="blabber">
+            <h1>Powered by students</h1>
+            <p>
+              Quimble, while school supported, is entirely run buy students for both comfort and control.
+            </p>
+            <ul>
+
+            </ul>
+          </div>
+          <ul>
+            <li> <h2>Info</h2> </li>
+            <li> <Link to="/about">About</Link> </li>
+            <li> <Link to="/support">Support</Link> </li>
+          </ul>
+
+        </section>
+
+        <hr />
+
+        <section className="closing">
+          <img src={LogoLight} alt="Quimble Logo" className="h-12" />
+          <Link to="/dash">Explore Quimble</Link>
+        </section>
+      </footer>
+
+    </>
+  )
+
+};

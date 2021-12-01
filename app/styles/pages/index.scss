@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .questions {
+        @apply flex flex-col justify-center items-center;
+        @apply w-full;
+
+        .question {
+            @apply flex flex-row justify-around flex-wrap items-center;
+            @apply w-[90%] min-w-[35rem];
+            @apply mb-24;
+
+            &:last-child {
+                @apply mb-8;
+            }
+
+            img {
+                @apply h-[20rem];
+                @apply mr-4;
+                @apply rounded-2xl;
+            }
+
+            .text {
+
+                @apply max-w-[50%];
+
+                h1 {
+                    @apply text-3xl;
+                }
+
+                p {
+                    @apply mb-4;
+                    @apply text-xl;
+                }
+            }
+        }
+    }
+}
