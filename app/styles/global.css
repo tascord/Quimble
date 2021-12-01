@@ -45,11 +45,15 @@
   body > header nav a {
     @apply text-gray-400 hover:text-gray-50;
   }
+  body > header nav a.active {
+    @apply text-green-400;
+  }
   body > header nav :not(:last-child) {
     @apply mr-4;
   }
   body > main {
-    @apply p-3 px-12 pb-[14.5rem];
+    @apply w-full h-full;
+    @apply md:p-3 md:px-12 pb-[14.5rem] md:pb-[14.5rem];
     @apply text-white;
   }
   body > footer {
@@ -59,7 +63,7 @@
     @apply bg-gray-800;
   }
   body > footer section.content {
-    @apply flex flex-row flex-wrap justify-between;
+    @apply flex flex-row justify-between;
     @apply w-full;
     @apply p-4 pt-8;
     @apply text-white;
@@ -69,17 +73,24 @@
     @apply mb-2;
   }
   body > footer section.content .blabber {
-    @apply w-[25%] min-w-[24rem] mr-[15rem] ml-8;
+    @apply flex flex-col items-center justify-center md:justify-start;
+    @apply w-full my-0 text-center;
+    @apply md:w-[25%] min-w-[24rem] md:mr-[15rem] md:ml-8 md:text-left;
     @apply text-lg;
+  }
+  body > footer section.content .blabber p {
+    @apply w-[70%] md:w-full;
   }
   body > footer section.content ul {
     @apply w-[15%];
+    @apply hidden md:block;
   }
   body > footer section.content ul a {
     @apply text-gray-400 hover:text-gray-50;
   }
   body > footer hr {
     width: calc(100% - 2.5rem);
+    @apply border-gray-900;
   }
   body > footer section.closing {
     @apply px-12 mt-4 mb-4;

@@ -61,6 +61,10 @@
 
             a {
                 @apply text-gray-400 hover:text-gray-50;
+
+                &.active {
+                    @apply text-green-400;
+                }
             }
 
             :not(:last-child) {
@@ -71,12 +75,14 @@
 
     // Main content
     body > main {
-        @apply p-3 px-12 pb-[14.5rem];
+        @apply w-full h-full;
+        @apply md:p-3 md:px-12 pb-[14.5rem] md:pb-[14.5rem];
         @apply text-white;
     }
 
     // Footer
     body > footer {
+
         @apply absolute bottom-0;
         @apply w-full h-[13.5rem];
         @apply flex flex-col items-center justify-center;
@@ -84,7 +90,7 @@
 
         // Content
         section.content {
-            @apply flex flex-row flex-wrap justify-between;
+            @apply flex flex-row justify-between;
             @apply w-full;
             @apply p-4 pt-8;
             @apply text-white;
@@ -96,12 +102,19 @@
 
             // Main
             .blabber {
-                @apply w-[25%] min-w-[24rem] mr-[15rem] ml-8;
+                @apply flex flex-col items-center justify-center md:justify-start;
+                @apply w-full my-0 text-center;
+                @apply md:w-[25%] min-w-[24rem] md:mr-[15rem] md:ml-8 md:text-left;
                 @apply text-lg;
+
+                p {
+                    @apply w-[70%] md:w-full;
+                }
             }
 
             ul {
                 @apply w-[15%];
+                @apply hidden md:block;
                 a {
                     @apply text-gray-400 hover:text-gray-50;
                 }
@@ -111,6 +124,7 @@
         // Spacer
         hr {
             width: calc(100% - 2.5rem);
+            @apply border-gray-900;
         }
 
         // Branding

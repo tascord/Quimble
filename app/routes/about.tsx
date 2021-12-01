@@ -1,4 +1,6 @@
 import { FaTwitter, FaInstagram, FaLinkedin, FaGlobe} from 'react-icons/fa';
+import { Link } from 'remix';
+import { Stater } from '~/helpers/stater';
 import Logo from '../media/logo_light.svg';
 
 export function links() {
@@ -6,6 +8,11 @@ export function links() {
 }
 
 export default function Index() {
+
+    Stater.emit('context_menu.reset', undefined);
+    Stater.emit('context_menu.add_item', (
+        <Link to="/about" className="active">About</Link>
+    ))
 
     // Tailwind hero header reading 'Quimble, giving you the power to express yourself.'
     return (

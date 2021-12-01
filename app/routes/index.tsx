@@ -6,23 +6,22 @@ export function links() {
 
 export default function Index() {
 
-  // Tailwind hero header reading 'Quimble, giving you the power to express yourself.'
   return (
     <>
-      <div className="w-full flex flex-row justify-around items-center flex-wrap mt-8">
-        <div className="">
+      <div className="w-full flex flex-row items-center justify-around flex-wrap mt-8">
+        <div className="max-w-[40rem] ml-12 md:ml-0">
           <img src={Logo} alt="Quimble logo" />
-          <p className="text-4xl font-extrabold w-[40rem] mb-8">
+          <p className="text-4xl font-extrabold mb-8 w-[90%]">
             Ensure expression without sacrificing safety.
           </p>
         </div>
-        <div className="w-[30rem] h-[35rem] flex items-center justify-center relative mb-[15rem]">
+        <div className="w-[30rem] h-[35rem] items-center justify-center relative mb-[15rem] hidden md:flex">
           <div className="absolute w-[35.5rem] h-[37.5rem] pr-32 bg-gradient-to-br from-yellow-500 to-pink-400 rounded-l-2xl mt-64 right-[-23rem] z-10"></div>
           <img src="https://via.placeholder.com/720x720" alt="Placeholder" className="h-[32.5rem] w-[32.5rem] rounded-2xl z-20" />
         </div>
       </div>
 
-      <hr className="my-8 w-full" />
+      <hr className="my-8 w-full border-gray-800" />
 
       <div className="questions">
 

@@ -1,6 +1,13 @@
+import { Link } from 'remix';
+import { Stater } from '~/helpers/stater';
 import Logo from '../media/logo_light.svg';
 
 export default function Index() {
+
+    Stater.emit('context_menu.reset', undefined);
+    Stater.emit('context_menu.add_item', (
+        <Link to="/support" className="active">Support</Link>
+    ))
 
     return (
         <>

@@ -3,6 +3,13 @@ import type { LinksFunction } from "remix";
 
 import TypogLight from './media/typography_light.svg';
 import LogoLight from './media/logo_light.svg';
+import { useState } from "react";
+import { Stater } from "./helpers/stater";
+
+const DefaultLinks = [
+  <Link to="/about">About</Link>,
+  <Link to="/support">Support</Link>
+]
 
 export let links: LinksFunction = () => {
   return [
@@ -11,13 +18,37 @@ export let links: LinksFunction = () => {
 };
 
 export default function App() {
+
+  const [links, setLinks] = useState<JSX.Element[]>(DefaultLinks);
+  Stater.on('context_menu.set_menu', (links) => setLinks(links));
+  Stater.on('context_menu.reset', () => {
+
+    console.log('resetting')
+    setLinks(DefaultLinks);
+
+  });
+
+  Stater.on('context_menu.add_item', item => {
+
+    let new_links = [...links];
+
+    let old = new_links.findIndex(l => l.props.to === item.props.to);
+    if (old !== -1) new_links[old] = item;
+    else new_links.push(item);
+
+    setLinks(new_links);
+
+
+  });
+
   return (
     <Document>
-      <Layout>
+      <Layout links={links}>
         <Outlet />
       </Layout>
     </Document>
   );
+
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
@@ -80,7 +111,10 @@ function Document({
   );
 }
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, links }: { children: React.ReactNode, links?: JSX.Element[] }) {
+
+  links = links ?? [];
+  if (links.length === 0) links = DefaultLinks;
 
   return (
 
@@ -93,8 +127,11 @@ function Layout({ children }: { children: React.ReactNode }) {
           </Link>
         </h1>
         <nav>
-          <Link to="/about">About</Link>
-          <Link to="/support">Support</Link>
+          {
+            links.map((l, i) => ({
+              ...l, key: i
+            }))
+          }
         </nav>
       </header>
 
@@ -109,9 +146,6 @@ function Layout({ children }: { children: React.ReactNode }) {
             <p>
               Quimble, while school supported, is entirely run buy students for both comfort and control.
             </p>
-            <ul>
-
-            </ul>
           </div>
           <ul>
             <li> <h2>Info</h2> </li>

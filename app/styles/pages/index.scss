@@ -10,13 +10,14 @@
         .question {
             @apply flex flex-row justify-around flex-wrap items-center;
             @apply w-[90%] min-w-[35rem];
-            @apply mb-24;
+            @apply mb-8 md:mb-24;
 
             &:last-child {
                 @apply mb-8;
             }
 
             img {
+                @apply hidden md:block;
                 @apply h-[20rem];
                 @apply mr-4;
                 @apply rounded-2xl;
@@ -24,7 +25,7 @@
 
             .text {
 
-                @apply max-w-[50%];
+                @apply md:max-w-[50%];
 
                 h1 {
                     @apply text-3xl;
@@ -37,4 +38,6 @@
             }
         }
     }
+
+
 }
