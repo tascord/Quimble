@@ -8,7 +8,8 @@ import { Stater } from "./helpers/stater";
 
 const DefaultLinks = [
   <Link to="/about">About</Link>,
-  <Link to="/support">Support</Link>
+  <Link to="/support">Support</Link>,
+  <Link to="/dash">Explore</Link>
 ]
 
 export let links: LinksFunction = () => {
@@ -21,10 +22,15 @@ export default function App() {
 
   const [links, setLinks] = useState<JSX.Element[]>(DefaultLinks);
   Stater.on('context_menu.set_menu', (links) => setLinks(links));
-  Stater.on('context_menu.reset', () => {
+  Stater.on('context_menu.add_to_default', item => {
 
-    console.log('resetting')
-    setLinks(DefaultLinks);
+    let new_links = [...DefaultLinks];
+
+    let old = new_links.findIndex(l => l.props.to === item.props.to);
+    if (old !== -1) new_links[old] = item;
+    else new_links.push(item);
+
+    setLinks(new_links);
 
   });
 
@@ -37,7 +43,6 @@ export default function App() {
     else new_links.push(item);
 
     setLinks(new_links);
-
 
   });
 

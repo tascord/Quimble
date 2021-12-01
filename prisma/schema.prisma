@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String @id // User's Code.
+  name       String     // User's Name.
+  role       String     // Staff / Student / Moderator.
+  identities String     // Lists cant be used here, so a CSV of Identity ID's are.
+}
+
+model Identity {
+  id       String @id @default(uuid())  // Identity ID.
+  name     String @default("")          // Specified name.
+  pronouns String @default("")          // Pronouns. Again, Lists can't be used.
+}

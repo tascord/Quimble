@@ -4,15 +4,14 @@ import Logo from '../media/logo_light.svg';
 
 export default function Index() {
 
-    Stater.emit('context_menu.reset', undefined);
-    Stater.emit('context_menu.add_item', (
+    Stater.emit('context_menu.add_to_default', (
         <Link to="/support" className="active">Support</Link>
     ))
 
     return (
         <>
-            <div className="absolute w-full flex flex-row justify-around items-center flex-wrap py-16 bg-gray-800 left-0">
-                <div className="">
+            <div className="banner">
+                <div>
                     <img src={Logo} alt="Quimble logo" />
                     <p className="text-4xl font-extrabold">
                         Ask questions about Quimble!
