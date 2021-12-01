@@ -18,7 +18,20 @@ model User {
 }
 
 model Identity {
-  id       String @id @default(uuid())  // Identity ID.
-  name     String @default("")          // Specified name.
-  pronouns String @default("")          // Pronouns. Again, Lists can't be used.
+  id       String @id @default(uuid()) // Identity ID.
+  name     String @default("")         // Specified name.
+  pronouns String @default("")         // Pronouns. Again, Lists can't be used.
+}
+
+model Resource {
+  id   String @id @default(uuid()) // Resource ID.
+  url  String                      // Link to resource.
+  tags String @default("")         // CSV tags.
+}
+
+model Notification {
+  id        String   @id @default(uuid()) // Notification ID.
+  title     String                        // Notification title text.
+  author    String   @default("System")   // User code of sending author.
+  timestamp DateTime @default(now())      // Creation time of notification.
 }

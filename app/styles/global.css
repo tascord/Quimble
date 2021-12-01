@@ -128,5 +128,135 @@
   div.popup > .content {
     @apply cursor-default;
   }
+  .video {
+    @apply relative;
+  }
+  .video video {
+    @apply w-full h-full;
+    @apply z-10;
+    @apply cursor-pointer;
+  }
+  .video .video-container {
+    @apply absolute bottom-0;
+    @apply w-full;
+    @apply flex flex-row justify-between items-center;
+    @apply z-20;
+    @apply pb-4;
+    @apply select-none;
+  }
+  .video .video-container .controls {
+    @apply ml-4;
+    @apply text-gray-200 text-opacity-80;
+    @apply shadow-2xl;
+    @apply cursor-pointer;
+  }
+  .video .video-container .time {
+    @apply mx-4;
+    @apply w-full;
+    @apply flex flex-row justify-between items-center;
+  }
+  .video .video-container .time span {
+    @apply text-gray-200 text-opacity-80;
+    @apply shadow-2xl;
+  }
+  .video .video-container .time .bar {
+    @apply h-3 w-full;
+    @apply mx-4;
+    @apply bg-gray-900;
+    @apply rounded-full shadow-2xl;
+    @apply cursor-pointer;
+  }
+  .video .video-container .time .bar .inner {
+    @apply h-full;
+    @apply bg-green-500;
+    @apply rounded-full;
+  }
+  .embed {
+    @apply w-[20rem] h-[18rem];
+    @apply flex flex-col justify-between items-center;
+    @apply bg-white border-2 border-gray-500;
+    @apply rounded-2xl shadow-2xl;
+  }
+  .embed.loading .header {
+    @apply animate-pulse;
+    @apply cursor-default;
+  }
+  .embed.loading .text h2 {
+    @apply rounded-full;
+    @apply bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400;
+    -webkit-animation: skeleton 3.25s ease-in-out infinite;
+            animation: skeleton 3.25s ease-in-out infinite;
+  }
+  .embed.loading .text p {
+    @apply relative;
+    @apply mt-2;
+    -webkit-animation: skeleton 3.5s ease-in-out infinite;
+            animation: skeleton 3.5s ease-in-out infinite;
+  }
+  .embed.loading .text p::after, .embed.loading .text p::before {
+    content: " ";
+    @apply absolute;
+    @apply z-30;
+    @apply w-full h-[1.25rem];
+    @apply rounded-full;
+    @apply bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400;
+    -webkit-animation: skeleton 3.5s ease-in-out infinite;
+            animation: skeleton 3.5s ease-in-out infinite;
+  }
+  .embed.loading .text p::after {
+    @apply top-[50%] mt-[0.15rem] w-[70%];
+  }
+  .embed .header {
+    @apply h-[10rem] w-full;
+    @apply bg-gray-600;
+    @apply rounded-[0.85rem] rounded-b-none;
+    @apply bg-center bg-no-repeat bg-cover;
+    @apply cursor-pointer;
+  }
+  .embed .text {
+    @apply w-full h-[8rem];
+    @apply px-2 py-3;
+    @apply text-gray-900;
+  }
+  .embed .text h2 {
+    @apply w-full;
+    @apply text-2xl font-bold;
+    @apply mb-1;
+  }
+  .embed .text h2 a {
+    @apply text-gray-800;
+  }
+  .embed .text p {
+    line-height: 1.5rem;
+    @apply w-full h-12 overflow-hidden overflow-ellipsis;
+  }
+  .embed .text > a {
+    @apply w-full min-w-full;
+    @apply hover:text-black;
+  }
+}
+
+@-webkit-keyframes skeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  30% {
+    background-position: calc(200px + 100%) 0;
+  }
+  100% {
+    background-position: -200px 0;
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: -200px 0;
+  }
+  30% {
+    background-position: calc(200px + 100%) 0;
+  }
+  100% {
+    background-position: -200px 0;
+  }
 }
 /*# sourceMappingURL=global.css.map */

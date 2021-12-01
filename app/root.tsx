@@ -18,7 +18,7 @@ export let links: LinksFunction = () => {
   ];
 };
 
-export default function App() {
+export default function App(props: any) {
 
   const [links, setLinks] = useState<JSX.Element[]>(DefaultLinks);
   Stater.on('context_menu.set_menu', (links) => setLinks(links));
@@ -47,7 +47,7 @@ export default function App() {
   });
 
   return (
-    <Document>
+    <Document title="Quimble">
       <Layout links={links}>
         <Outlet />
       </Layout>
