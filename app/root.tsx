@@ -46,6 +46,10 @@ export default function App(props: any) {
 
   });
 
+  Stater.on('context_menu.reset', () => {
+    setLinks(DefaultLinks);
+  })
+
   return (
     <Document title="Quimble">
       <Layout links={links}>

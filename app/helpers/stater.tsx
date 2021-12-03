@@ -41,6 +41,7 @@ const stater = new Stater<{
     'context_menu.set_menu': JSX.Element[],
     'context_menu.add_item': JSX.Element,
     'context_menu.add_to_default': JSX.Element,
+    'context_menu.reset': null
 }>();
 
 export { stater as Stater };

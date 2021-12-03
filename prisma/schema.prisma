@@ -12,7 +12,6 @@ datasource db {
 
 model User {
   id         String @id // User's Code.
-  name       String     // User's Name.
   role       String     // Staff / Student / Moderator.
   identities String     // Lists cant be used here, so a CSV of Identity ID's are.
 }

@@ -1,3 +1,4 @@
+import { Stater } from '~/helpers/stater';
 import Logo from '../media/logo_light.svg'
 
 export function links() {
@@ -6,6 +7,8 @@ export function links() {
 
 export default function Index() {
 
+  Stater.emit('context_menu.reset', null);
+  
   return (
     <>
       <div className="w-full flex flex-row items-center justify-around flex-wrap mt-8">

@@ -1,9 +1,15 @@
-import { Link } from "remix";
+import { Link, LoaderFunction, useLoaderData } from "remix";
 import { Stater } from "~/helpers/stater";
-import Video from "~/components/video";
 import Embed from "~/components/embed";
+import { get_resources, Resource } from "~/utils/db.server";
+
+export const loader: LoaderFunction = async () => {
+    return await get_resources();
+}
 
 export default function Index() {
+
+    const resources = useLoaderData<Resource[]>();
 
     Stater.emit('context_menu.set_menu', [
         <Link to="/dash/">Home</Link>,
@@ -15,12 +21,18 @@ export default function Index() {
 
         <>
 
-            <h1 className="text-4xl text-green-500">Resources</h1>
-            <p>Some useful resources for queer folk</p>
+            <article className="header">
+                <h1 className="text-4xl text-green-500">Resources</h1>
+                <p>Some useful resources for queer folk</p>
+            </article>
 
-            <section className="w-full flex flex-row justify-around items-center flex-wrap">
+            <section className="scroller">
 
-                <Embed url="https://discord.com" />
+                {
+                    resources.map(resource => (
+                        <Embed key={resource.url} url={resource.url} />
+                    ))
+                }
 
             </section>
 
