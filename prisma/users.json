@@ -1,5 +1,15 @@
 [
     {
+        "name": "Flora Hill (Moderator)",
+        "id": "FMOD",
+        "type": "moderator"
+    },
+    {
+        "name": "Flora Hill",
+        "id": "HIL0009",
+        "type": "student"
+    },
+    {
         "name": "Alborz ABOUFAZELI",
         "id": "ABO0001",
         "type": "student"

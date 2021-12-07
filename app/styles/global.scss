@@ -53,14 +53,19 @@
             @apply text-2xl tracking-widest;
         }
 
-        // Nav bar
-        nav {
+        // Nav bar (Full Size)
+        nav:not(.mobile) {
             @apply w-full;
             @apply flex justify-end;
             @apply font-bold;
 
             a {
                 @apply text-gray-400 hover:text-gray-50;
+                @apply hidden md:inline;
+
+                &.mobile {
+                    @apply inline md:hidden;
+                }
 
                 &.active {
                     @apply text-green-400;
@@ -69,6 +74,28 @@
 
             :not(:last-child) {
                 @apply mr-4;
+            }
+        }
+
+        // Nav bar (Toggleable on mobile)
+        nav.mobile {
+            @apply fixed top-[-100vh] left-0;
+            @apply w-full h-full;
+            @apply md:hidden flex flex-col justify-center items-center z-30;
+            @apply bg-gray-600;
+            @apply font-bold text-2xl;
+            @apply shadow-2xl;
+            @apply transition-all ease-in-out duration-500;
+
+            &.active {
+                @apply top-0;
+            }
+
+            a {
+                @apply text-gray-400 hover:text-gray-50;
+                &.active {
+                    @apply text-green-400;
+                }
             }
         }
     }
@@ -97,14 +124,14 @@
     // Footer
     body > footer {
         @apply absolute bottom-0;
-        @apply w-full h-[13.5rem];
+        @apply w-[100vw] h-[13.5rem];
         @apply flex flex-col items-center justify-center;
         @apply bg-gray-800;
 
         // Content
         section.content {
             @apply flex flex-row justify-between;
-            @apply w-full;
+            @apply w-[100vw];
             @apply p-4 pt-8;
             @apply text-white;
 
@@ -357,6 +384,13 @@
             @apply text-black;
         }
 
+        textarea {
+            @apply m-2 my-3 px-3;
+            @apply py-1;
+            @apply rounded-lg shadow-2xl;
+            @apply text-black;
+        }
+
         button {
             @apply relative;
             @apply py-1;
@@ -372,7 +406,12 @@
                 left: calc(50% - 1rem);
 
                 border-radius: 50%;
-                background: linear-gradient(45deg, rgba(24,24,24,1) 0%, rgba(140,140,140,1) 18%, rgba(24,24,24,1) 40%);
+                background: linear-gradient(
+                    45deg,
+                    rgba(24, 24, 24, 1) 0%,
+                    rgba(140, 140, 140, 1) 18%,
+                    rgba(24, 24, 24, 1) 40%
+                );
                 mask-image: radial-gradient(transparent 0 13px, #000 6.5px);
 
                 @apply hidden absolute;
@@ -380,7 +419,7 @@
                 @apply opacity-30;
                 @apply animate-spin;
             }
-            
+
             &.loading {
                 @apply cursor-wait;
                 @apply animate-pulse;

@@ -1,4 +1,4 @@
-import { FaTwitter, FaInstagram, FaLinkedin, FaGlobe} from 'react-icons/fa';
+import { FaTwitter, FaInstagram, FaLinkedin, FaGlobe } from 'react-icons/fa';
 import { Link } from 'remix';
 import { Stater } from '~/helpers/stater';
 import Logo from '../media/logo_light.svg';

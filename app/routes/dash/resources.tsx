@@ -11,10 +11,12 @@ export default function Index() {
 
     const resources = useLoaderData<Resource[]>();
 
+
     Stater.emit('context_menu.set_menu', [
         <Link to="/dash/">Home</Link>,
         <Link to="/dash/staff">Staff List</Link>,
-        <Link to="/dash/resources" className="active">Resources</Link>
+        <Link to="/dash/resources" className="active">Resources</Link>,
+        <Link to="/dash/chat">Chat</Link>,
     ])
 
     return (

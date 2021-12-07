@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  .widget:not(.shelf) {
+    @apply p-5 py-2 mx-2;
+    @apply rounded-lg shadow-xl;
+    @apply border-2 border-gray-600;
+    @apply bg-white;
+    @apply text-black;
+    @apply flex flex-col justify-center items-center;
+    @apply select-none;
+  }
+  .drawer {
+    @apply fixed right-[-30rem] top-0;
+    @apply w-[30rem] h-full;
+    @apply bg-white;
+    @apply z-40;
+    @apply shadow-2xl;
+    @apply p-3;
+    @apply flex flex-col;
+    @apply transition-all ease-out duration-500;
+  }
+  .drawer.open {
+    @apply right-0;
+  }
+  .drawer > a {
+    @apply fixed right-5 top-5;
+    @apply text-gray-900;
+  }
+  .drawer li {
+    @apply my-2;
+    @apply cursor-pointer;
+    @apply w-max;
+    @apply rounded-xl;
+    @apply relative;
+  }
+  .drawer li > h1 {
+    width: calc(100% - 1rem);
+    @apply block;
+    @apply h-full;
+    @apply mx-2;
+    @apply flex flex-col justify-center items-center;
+    @apply absolute text-xl;
+    @apply text-gray-900 bg-gray-400;
+    @apply rounded-lg;
+    @apply bg-opacity-60;
+    @apply opacity-0 hover:opacity-100;
+    @apply transition-all ease-in-out duration-300;
+  }
+  .layout.editing > div {
+    @apply bg-red-400 bg-opacity-0 hover:bg-opacity-50 rounded-lg;
+  }
+  .layout > div {
+    @apply m-3;
+    @apply w-full h-full;
+    @apply flex justify-center items-center;
+    @apply select-none cursor-pointer;
+    @apply bg-green-300 bg-opacity-0 hover:bg-opacity-50 rounded-lg;
+  }
+  .layout > div .remove {
+    @apply absolute;
+    @apply top-5 right-5;
+    @apply text-red-500 opacity-60 hover:opacity-100;
+    @apply cursor-pointer;
+    @apply transition-all duration-300 ease-out;
+    @apply hidden;
+  }
+  .layout > div .widget {
+    @apply w-full h-[90%] m-2;
+    @apply cursor-move;
+    @apply pointer-events-none;
+  }
+}
+/*# sourceMappingURL=widgets.css.map */

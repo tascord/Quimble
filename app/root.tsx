@@ -5,6 +5,7 @@ import TypogLight from './media/typography_light.svg';
 import LogoLight from './media/logo_light.svg';
 import { useState } from "react";
 import { Stater } from "./helpers/stater";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const DefaultLinks = [
   <Link to="/about">About</Link>,
@@ -120,6 +121,7 @@ function Document({
   );
 }
 
+let header_active = false;
 function Layout({ children, links }: { children: React.ReactNode, links?: JSX.Element[] }) {
 
   links = links ?? [];
@@ -136,6 +138,19 @@ function Layout({ children, links }: { children: React.ReactNode, links?: JSX.El
           </Link>
         </h1>
         <nav>
+          {
+            links.map((l, i) => ({
+              ...l, key: i
+            }))
+          }
+          <a href="#" className="mobile grid place-items-center pt-1">
+            <FaBars onClick={() => header_active = true} />
+          </a>
+        </nav>
+        <nav className={"mobile" + (header_active ? ' active' : '')}>
+          <a href="#" className="absolute top-9 right-11" onClick={() => header_active = false} >
+            <FaTimes />
+          </a>
           {
             links.map((l, i) => ({
               ...l, key: i

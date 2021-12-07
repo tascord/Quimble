@@ -10,10 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id         String @id // User's Code.
-  role       String     // Staff / Student / Moderator.
-  identities String     // Lists cant be used here, so a CSV of Identity ID's are.
+model User {                                                         
+  id         String @id                                                                                       // User's Code.
+  role       String                                                                                           // Staff / Student / Moderator.
+  identities String                                                                                           // Lists cant be used here, so a CSV of Identity ID's are.
+  layout     String @default("[{\"x\":0,\"y\":0,\"name\":\"Clock\"},{\"x\":0,\"y\":1,\"name\":\"Weather\"}]") // User's widget Layout.
+  read_notifications String @default("")                                                                      // List of notifications the user has read.
 }
 
 model Identity {
@@ -33,4 +35,20 @@ model Notification {
   title     String                        // Notification title text.
   author    String   @default("System")   // User code of sending author.
   timestamp DateTime @default(now())      // Creation time of notification.
+}
+
+model ChatRoom {
+  id            String @id @default(uuid()) // Chat Room ID.
+  name          String @default("")         // Chat Room name.
+  messages      String @default("")         // CSV of message IDs.
+  last_message  DateTime @default(now())    // Time of last sent message.
+  sticky        Boolean @default(false)     // Whether or not the room is sticky.
+}
+
+model ChatMessage {
+  id          Int @id @default(autoincrement()) // Message ID.
+  author      String                            // Author's Code.
+  content     String                            // Message Content.
+  timestamp   DateTime @default(now())          // Message Timestamp.
+  reply       Int                               // Reply ID if any.
 }

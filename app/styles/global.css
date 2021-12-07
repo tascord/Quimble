@@ -37,19 +37,41 @@
   body > header h1 {
     @apply text-2xl tracking-widest;
   }
-  body > header nav {
+  body > header nav:not(.mobile) {
     @apply w-full;
     @apply flex justify-end;
     @apply font-bold;
   }
-  body > header nav a {
+  body > header nav:not(.mobile) a {
     @apply text-gray-400 hover:text-gray-50;
+    @apply hidden md:inline;
   }
-  body > header nav a.active {
+  body > header nav:not(.mobile) a.mobile {
+    @apply inline md:hidden;
+  }
+  body > header nav:not(.mobile) a.active {
     @apply text-green-400;
   }
-  body > header nav :not(:last-child) {
+  body > header nav:not(.mobile) :not(:last-child) {
     @apply mr-4;
+  }
+  body > header nav.mobile {
+    @apply fixed top-[-100vh] left-0;
+    @apply w-full h-full;
+    @apply md:hidden flex flex-col justify-center items-center z-30;
+    @apply bg-gray-600;
+    @apply font-bold text-2xl;
+    @apply shadow-2xl;
+    @apply transition-all ease-in-out duration-500;
+  }
+  body > header nav.mobile.active {
+    @apply top-0;
+  }
+  body > header nav.mobile a {
+    @apply text-gray-400 hover:text-gray-50;
+  }
+  body > header nav.mobile a.active {
+    @apply text-green-400;
   }
   body > main {
     @apply w-full h-full;
@@ -68,13 +90,13 @@
   }
   body > footer {
     @apply absolute bottom-0;
-    @apply w-full h-[13.5rem];
+    @apply w-[100vw] h-[13.5rem];
     @apply flex flex-col items-center justify-center;
     @apply bg-gray-800;
   }
   body > footer section.content {
     @apply flex flex-row justify-between;
-    @apply w-full;
+    @apply w-[100vw];
     @apply p-4 pt-8;
     @apply text-white;
   }
@@ -271,6 +293,12 @@
   form input {
     text-indent: 0.25rem;
     @apply m-2 my-3;
+    @apply py-1;
+    @apply rounded-lg shadow-2xl;
+    @apply text-black;
+  }
+  form textarea {
+    @apply m-2 my-3 px-3;
     @apply py-1;
     @apply rounded-lg shadow-2xl;
     @apply text-black;

@@ -9,7 +9,7 @@
 
         .question {
             @apply flex flex-row justify-around flex-wrap items-center;
-            @apply w-[90%] min-w-[35rem];
+            @apply w-[90%] md:min-w-[35rem];
             @apply mb-8 md:mb-24;
 
             &:last-child {
@@ -34,6 +34,9 @@
                 p {
                     @apply mb-4;
                     @apply text-xl;
+
+                    @apply max-w-full;
+
                 }
             }
         }

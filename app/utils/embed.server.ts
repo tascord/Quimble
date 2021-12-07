@@ -19,7 +19,6 @@ export function embed(url: string): Promise<EmbedData> {
             .then(html => {
 
                 const $ = load(html);
-                // console.log($('body').text());
 
                 const title = $('meta[property="og:title"]').attr('content') || $('meta[name="twitter:title"]').attr('content') || $('meta[name="title"]').attr('content') || $('title').text()
                 const description = $('meta[property="og:description"]').attr('content') || $('meta[name="twitter:description"]').attr('content') || $('meta[name="description"]').attr('content')

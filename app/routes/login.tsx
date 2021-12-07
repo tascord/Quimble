@@ -1,28 +1,70 @@
-import { ActionFunction, Form, redirect, useActionData, useTransition } from 'remix';
-import { Stater } from '~/helpers/stater';
-import { User } from '../helpers/user';
+import { ActionFunction, Form, json, LoaderFunction, redirect, useActionData, useTransition } from 'remix';
+import { get_user } from '~/utils/db.server';
+import { commitSession, getSession } from '~/utils/session.server';
+
+export const loader: LoaderFunction = async ({ request }) => {
+
+    //TODO: Why the redirects?
+
+    const session = await getSession(request.headers.get('Cookie'));
+    
+    // Redirect if logged in already
+    if(session.has('user_token')) {
+        try {
+            await get_user(session.get('user_token'));
+            return redirect('/dash');
+        } catch {
+            session.unset('user_token');
+            return redirect('/login', {
+                headers: {
+                    'Set-Cookie': await commitSession(session)
+                }
+            });
+        }
+    }
+
+    return json({});
+
+}
 
 export const action: ActionFunction = async ({ request }) => {
 
     const data = await request.formData();
     let errors: { [key: string]: string } = {};
 
-    let username = (data.get('username') ?? '').toString();
-    if (!(/^(([A-Z]{3}[0-9]{4})|([A-Z]{3,4}))$/.test(username))) {
-        errors['username'] = 'Invalid code format.';
+    // Format user_code field
+    let user_code = (data.get('user_code') ?? '').toString();
+    if (!(/^(([A-Z]{3}[0-9]{4})|([A-Z]{3,4}))$/.test(user_code))) {
+        errors['user_code'] = 'Invalid code format.';
     }
 
+    // Check user exists
+    try { await get_user(user_code) }
+    catch {
+        errors['user_code'] = 'No user exists with that code.';
+    }
+
+    // Return errors if any
     if (Object.keys(errors).length > 0) {
         return errors;
     }
 
-    User.user = username;
-    return redirect('/dash');
+    // Get and update session information
+    const session = await getSession(request.headers.get('Cookie'));
+    session.set('user_token', user_code);
+
+    // Redirect with session information
+    return redirect('/dash', {
+        headers: {
+            'Set-Cookie': await commitSession(session)
+        }
+    });
+
 }
 
 export default function Index() {
 
-    Stater.emit('context_menu.reset', null);
+    // Stater.emit('context_menu.reset', null);
 
     const errors = useActionData();
 
@@ -38,10 +80,10 @@ export default function Index() {
 
                 <label>
                     Staff/Student Code
-                    {errors?.username && <span>{errors.username}</span>}
+                    {errors?.user_code && <span>{errors.user_code}</span>}
                     <input
                         type="text"
-                        name="username"
+                        name="user_code"
                         minLength={3}
                         maxLength={7}
                         autoComplete="off"

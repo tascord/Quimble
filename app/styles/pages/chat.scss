@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    @mixin scroll {
+        &::-webkit-scrollbar {
+            @apply w-1;
+            @apply shadow-xl;
+        }
+
+        &::-webkit-scrollbar-track {
+            @apply rounded-full;
+            @apply bg-gray-200;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            @apply rounded-full;
+            @apply shadow-2xl;
+            @apply bg-gray-500;
+        }
+
+    }
+
+    main > .chatroom {
+        @apply mt-8;
+        @apply flex flex-col;
+
+        .message {
+            @apply flex flex-col;
+            @apply my-2 px-4 py-2;
+            @apply border-l-2 border-green-500;
+            @apply target:bg-gray-700 bg-opacity-10;
+
+            h2 {
+                @apply font-semibold text-2xl;
+
+                span {
+                    @apply ml-4;
+                    @apply font-light text-xl;
+                    @apply text-gray-500;
+                }
+            }
+        }
+    }
+
+    form {
+        blockquote {
+            @include scroll;
+            @apply font-light;
+            @apply my-2 px-4 py-2;
+            @apply border-l-2 border-green-500;
+            @apply max-h-20;
+            @apply overflow-y-auto;
+        }
+    }
+}
